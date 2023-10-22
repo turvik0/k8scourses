@@ -3,7 +3,7 @@ from flask import Flask
 app = Flask(__name__)
 @app.route('/')
 def getstring():
-    response = requests.get("http://localhost:8080/")
+    response = requests.get("http://service1:8080")
     if response.status_code == 200:
         return response.text
     else:
