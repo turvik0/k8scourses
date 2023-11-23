@@ -1,1 +1,1 @@
-docker pull viktor891/homework2:service1
+the rest of the homeworks

@@ -1,0 +1,29 @@
+version: "2"
+services:
+  # db:
+  #   image: mariadb:latest
+  #   restart: always
+  #   container_name: db
+  #   env_file:
+  #     .env
+  #   ports:
+  #     - "3306:3306"
+  #   healthcheck:
+  #     test: [ "CMD", "healthcheck.sh", "--su-mysql", "--connect", "--innodb_initialized" ]
+  #     interval: 10s
+  #     timeout: 10s
+  #     retries: 7
+  maven:
+    image: maven
+    command: tail -F anything
+    container_name: maven
+    volumes:
+      - ~/myapp:/root/myapp
+    command: cd myapp && bash -c mvn package myapp
+  java:
+    image: openjdk
+    command: tail -F anything
+    container_name: java
+    volumes:
+      - /root/myapp
+    

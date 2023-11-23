@@ -1,0 +1,7 @@
+---
+- name: do the tasks
+  hosts: all
+  gather_facts: true
+  become: yes
+  roles:
+    - docker_compose
