@@ -1,46 +1,32 @@
 ---
-- name: Run using a project directory
-  hosts: localhost
-  gather_facts: true
-  become: yes
-  tasks:
-    # - name: create service
-    #   community.docker.docker_compose:
-    #     project_src: mariadb
-    #     state: present
-    # - name: Run containers
-    #   become: True
-    #   shell:
-    #     cmd: "docker-compose -f docker-compose.yml up -d"
-    #     chdir: composefolder
-    - name: install pre-requisites 
-      ansible.builtin.shell:
-        cmd: ansible-galaxy collection install community.docker
-    - name: clone
-      ansible.builtin.git:
-        repo: git@github.com:turvik0/javahelloworld.git
-        dest: ~/myapp
-        version: main
-    - name: deploy Docker Compose stack
-      community.docker.docker_compose:
-        project_src: dockerfolder
-        files:
-        - docker-compose.yml
-    - name: delete files in local folder ~/myapp
-      ansible.builtin.shell:
-        cmd: cd ~/myapp && rm -i *
-    - name: docker cp to localhost
-      ansible.builtin.shell:
-        cmd:  docker cp maven:/myapp ~/myapp
-    - name: docker cp from localhost to second container
-      ansible.builtin.shell:
-        cmd:  docker cp ~/myapp java:/root/myapp
-    - name: run the project with openjdk
-      community.docker.docker_container_exec:
-        container: java
-        command: java -jar target/gs-maven-0.1.0.jar
-        chdir: /root/myapp
-      register: result
+- name: install pre-requisites 
+  ansible.builtin.shell:
+    cmd: ansible-galaxy collection install community.docker
+- name: clone
+  ansible.builtin.git:
+    repo: git@github.com:turvik0/javahelloworld.git
+    dest: ~/myapp
+    version: main
+- name: deploy Docker Compose stack
+  community.docker.docker_compose:
+    project_src: dockerfolder
+    files:
+    - docker-compose.yml
+- name: delete files in local folder ~/myapp
+  ansible.builtin.shell:
+    cmd: cd ~/myapp && rm -i *
+- name: docker cp to localhost
+  ansible.builtin.shell:
+    cmd:  docker cp maven:/myapp ~/myapp
+- name: docker cp from localhost to second container
+  ansible.builtin.shell:
+    cmd:  docker cp ~/myapp java:/root/myapp
+- name: run the project with openjdk
+  community.docker.docker_container_exec:
+    container: java
+    command: java -jar target/gs-maven-0.1.0.jar
+    chdir: /root/myapp
+  register: result
 
       
     
