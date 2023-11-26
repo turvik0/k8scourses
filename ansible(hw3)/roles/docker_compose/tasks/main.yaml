@@ -8,7 +8,7 @@
 - name: clone
   ansible.builtin.git:
     repo: git@github.com:turvik0/javahelloworld.git
-    dest: /home/nuklo/myapp
+    dest: {{MYAPPDIRRECTORY}}/myapp
     version: main
 - name: deploy Docker Compose stack
   community.docker.docker_compose:
