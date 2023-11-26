@@ -12,15 +12,17 @@
     project_src: ./roles/docker_compose/tasks/dockerfolder
     files:
     - docker-compose.yml
+
 # - name: delete folder {{ MYAPPDIRRECTORY }} # -- no need since volume /home/nuklo/myapp is attahed and is changed in real time with /root/myapp in maven container
 #   ansible.builtin.shell:
 #     cmd: cd {{ MYAPPDIRRECTORY }}/myapp && rm -rf *
 # - name: docker cp to localhost # -- that is the same reason
 #   ansible.builtin.shell:
 #     cmd:  docker cp maven:/root/myapp {{ MYAPPDIRRECTORY }}
+
 - name: docker cp from localhost to second container
   ansible.builtin.shell:
-    cmd:  docker cp {{ MYAPPDIRRECTORY }}/myapp/ java:/root/myapp
+    cmd:  docker cp {{ MYAPPDIRRECTORY }}/myapp/ java:/root
 - name: run the project with openjdk
   community.docker.docker_container_exec:
     container: java
