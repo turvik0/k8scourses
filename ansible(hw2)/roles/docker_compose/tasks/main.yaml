@@ -14,7 +14,7 @@
     - docker-compose.yml
 - name: delete files in local folder {{ MYAPPDIRRECTORY }}/myapp
   ansible.builtin.shell:
-    cmd: cd {{ MYAPPDIRRECTORY }}/myapp && rm -rf * && rm -rf .*
+    cmd: cd {{ MYAPPDIRRECTORY }}/myapp && rm -rf *
 - name: docker cp to localhost
   ansible.builtin.shell:
     cmd:  docker cp maven:/root/myapp {{ MYAPPDIRRECTORY }}/myapp
