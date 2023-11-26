@@ -2,6 +2,9 @@
 - name: install pre-requisites 
   ansible.builtin.shell:
     cmd: ansible-galaxy collection install community.docker
+- name: delete folder {{ MYAPPDIRRECTORY }}
+  ansible.builtin.shell:
+    cmd: cd {{ MYAPPDIRRECTORY }}/myapp && rm -rf myapp
 - name: clone
   ansible.builtin.git:
     repo: git@github.com:turvik0/javahelloworld.git
@@ -36,6 +39,11 @@
     command: java -jar target/gs-maven-0.1.0.jar
     chdir: /root/myapp
   register: stdout
+# to see the output of running the project
+- set_fact: 
+    psk={{ stdout.stdout }}
 
+- debug: var=psk
+  run_once: true
       
     
