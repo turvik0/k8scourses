@@ -1,8 +1,7 @@
 ---
 - name: do the tasks
-  hosts: all
+  hosts: 127.0.0.1
   gather_facts: true
   become: yes
-  delegate_to: 127.0.0.1
   roles:
     - docker_compose
