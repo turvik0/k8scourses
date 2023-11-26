@@ -41,9 +41,9 @@
   register: stdout
 # to see the output of running the project
 - set_fact: 
-    psk={{ stdout.stdout }}
+    return_of_project={{ stdout.stdout }}
 
-- debug: var=psk
+- debug: var=return_of_project
   run_once: true
       
     
