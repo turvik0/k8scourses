@@ -20,6 +20,13 @@
 #   ansible.builtin.shell:
 #     cmd:  docker cp maven:/root/myapp {{ MYAPPDIRRECTORY }}
 
+# - name: run the project with openjdk
+#   community.docker.docker_container_exec:
+#     container: maven
+#     command: cd /root/myapp && mvn package
+#     chdir: /root/myapp
+#   register: result
+
 - name: docker cp from localhost to second container
   ansible.builtin.shell:
     cmd:  docker cp {{ MYAPPDIRRECTORY }}/myapp/ java:/root
