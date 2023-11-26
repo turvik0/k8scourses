@@ -9,12 +9,12 @@
     version: main
 - name: deploy Docker Compose stack
   community.docker.docker_compose:
-    project_src: ./dockerfolder
+    project_src: ./roles/docker_compose/tasks/dockerfolder
     files:
     - docker-compose.yml
 - name: delete files in local folder ~/myapp
   ansible.builtin.shell:
-    cmd: cd ~/myapp && rm -i *
+    cmd: cd /root/myapp && rm -i *
 - name: docker cp to localhost
   ansible.builtin.shell:
     cmd:  docker cp maven:/myapp ~/myapp
