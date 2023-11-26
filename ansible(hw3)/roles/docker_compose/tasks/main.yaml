@@ -5,11 +5,14 @@
 - name: delete folder {{ MYAPPDIRRECTORY }}
   ansible.builtin.shell:
     cmd: cd {{ MYAPPDIRRECTORY }}/myapp && rm -rf myapp
-- name: clone
-  ansible.builtin.git:
-    repo: git@github.com:turvik0/javahelloworld.git
-    dest: {{MYAPPDIRRECTORY}}/myapp
-    version: main
+# - name: clone
+#   ansible.builtin.git:
+#     repo: git@github.com:turvik0/javahelloworld.git
+#     dest: {{MYAPPDIRRECTORY}}/myapp
+#     version: main
+- name: clone repository
+  ansible.builtin.shell:
+    cmd:  cd {{MYAPPDIRRECTORY}} && git clone git@github.com:turvik0/javahelloworld.git myapp/
 - name: deploy Docker Compose stack
   community.docker.docker_compose:
     project_src: ./roles/docker_compose/tasks/dockerfolder
