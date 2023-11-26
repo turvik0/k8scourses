@@ -1,6 +1,8 @@
 ---
 - name: do the tasks
   hosts: 127.0.0.1
+  vars:
+    MYAPPDIRRECTORY: /home/nuklo
   gather_facts: true
   become: yes
   roles:
