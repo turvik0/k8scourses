@@ -4,7 +4,7 @@ services:
     image: maven
     container_name: maven
     volumes:
-      - ~/myapp:/root/myapp
+      - /home/nuklo/myapp:/root/myapp
     command: cd myapp && bash -c mvn package myapp
     command: tail -F anything
   java:
