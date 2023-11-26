@@ -17,10 +17,10 @@
     cmd: cd {{ MYAPPDIRRECTORY }} && rm -rf myapp
 - name: docker cp to localhost
   ansible.builtin.shell:
-    cmd:  docker cp maven:/root/myapp {{ MYAPPDIRRECTORY }}
+    cmd:  docker cp maven:/root/myapp/ {{ MYAPPDIRRECTORY }}/myapp
 - name: docker cp from localhost to second container
   ansible.builtin.shell:
-    cmd:  docker cp {{ MYAPPDIRRECTORY }}/myapp java:/root
+    cmd:  docker cp {{ MYAPPDIRRECTORY }}/myapp/ java:/root/myapp
 - name: run the project with openjdk
   community.docker.docker_container_exec:
     container: java
