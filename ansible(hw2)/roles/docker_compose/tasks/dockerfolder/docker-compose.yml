@@ -15,11 +15,11 @@ services:
   #     retries: 7
   maven:
     image: maven
-    command: tail -F anything
     container_name: maven
     volumes:
       - ~/myapp:/root/myapp
     command: cd myapp && bash -c mvn package myapp
+    command: tail -F anything
   java:
     image: openjdk
     command: tail -F anything
