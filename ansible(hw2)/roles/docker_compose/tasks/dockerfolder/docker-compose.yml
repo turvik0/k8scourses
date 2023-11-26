@@ -5,8 +5,6 @@ services:
     container_name: maven
     volumes:
       - /home/nuklo/myapp:/root/myapp
-    command: cd /root/myapp
-    command: mvn package
     command: tail -F anything
   java:
     image: openjdk
