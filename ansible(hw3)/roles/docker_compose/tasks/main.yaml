@@ -2,9 +2,9 @@
 - name: install pre-requisites 
   ansible.builtin.shell:
     cmd: ansible-galaxy collection install community.docker
-- name: delete folder {{ MYAPPDIRRECTORY }}
+- name: delete folder {{ MYAPPDIRRECTORY }}/myapp
   ansible.builtin.shell:
-    cmd: cd {{ MYAPPDIRRECTORY }}/myapp && rm -rf myapp
+    cmd: rm -rf {{ MYAPPDIRRECTORY }}/myapp
 # - name: clone
 #   ansible.builtin.git:
 #     repo: git@github.com:turvik0/javahelloworld.git
@@ -12,7 +12,7 @@
 #     version: main
 - name: clone repository
   ansible.builtin.shell:
-    cmd:  cd {{MYAPPDIRRECTORY}} && git clone git@github.com:turvik0/javahelloworld.git myapp/
+    cmd: git clone git@github.com:turvik0/javahelloworld.git {{MYAPPDIRRECTORY}}/myapp/
 - name: deploy Docker Compose stack
   community.docker.docker_compose:
     project_src: ./roles/docker_compose/tasks/dockerfolder
