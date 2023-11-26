@@ -5,11 +5,11 @@
 - name: clone
   ansible.builtin.git:
     repo: git@github.com:turvik0/javahelloworld.git
-    dest: ~/myapp
+    dest: /root/myapp
     version: main
 - name: deploy Docker Compose stack
   community.docker.docker_compose:
-    project_src: dockerfolder
+    project_src: ./dockerfolder
     files:
     - docker-compose.yml
 - name: delete files in local folder ~/myapp
