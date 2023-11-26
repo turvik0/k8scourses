@@ -2,9 +2,9 @@
 - name: install pre-requisites 
   ansible.builtin.shell:
     cmd: ansible-galaxy collection install community.docker
-- name: delete folder {{ MYAPPDIRRECTORY }}/myapp
-  ansible.builtin.shell:
-    cmd: rm -rf {{ MYAPPDIRRECTORY }}/myapp
+# - name: delete folder {{ MYAPPDIRRECTORY }}/myapp
+#   ansible.builtin.shell:
+#     cmd: rm -rf {{ MYAPPDIRRECTORY }}/myapp
 # - name: clone
 #   ansible.builtin.git:
 #     repo: git@github.com:turvik0/javahelloworld.git
