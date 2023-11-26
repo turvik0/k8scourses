@@ -5,22 +5,22 @@
 - name: clone
   ansible.builtin.git:
     repo: git@github.com:turvik0/javahelloworld.git
-    dest: /root/myapp
+    dest: {{ MYAPPDIRRECTORY }}/myapp
     version: main
 - name: deploy Docker Compose stack
   community.docker.docker_compose:
     project_src: ./roles/docker_compose/tasks/dockerfolder
     files:
     - docker-compose.yml
-- name: delete files in local folder ~/myapp
+- name: delete files in local folder {{ MYAPPDIRRECTORY }}/myapp
   ansible.builtin.shell:
-    cmd: cd /root/myapp && rm -i *
+    cmd: cd {{ MYAPPDIRRECTORY }}/myapp && rm -rfi *
 - name: docker cp to localhost
   ansible.builtin.shell:
-    cmd:  docker cp maven:/myapp ~/myapp
+    cmd:  docker cp maven:/myapp {{ MYAPPDIRRECTORY }}/myapp
 - name: docker cp from localhost to second container
   ansible.builtin.shell:
-    cmd:  docker cp ~/myapp java:/root/myapp
+    cmd:  docker cp /myapp java:/root/myapp
 - name: run the project with openjdk
   community.docker.docker_container_exec:
     container: java
