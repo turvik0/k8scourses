@@ -19,6 +19,7 @@ services:
       - "9000:9000"
     networks:
       - jenkins-net
+    command: tail -F anything
 
 networks:
   jenkins-net:
