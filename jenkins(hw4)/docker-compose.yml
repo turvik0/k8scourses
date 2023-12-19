@@ -12,6 +12,7 @@ services:
       - jenkins_home:/var/jenkins_home
       - /usr/bin/docker:/usr/bin/docker
     privileged: true
+    command: apt update
 
   sonarqube:
     image: sonarqube:latest

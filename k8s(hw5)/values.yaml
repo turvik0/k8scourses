@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: service1
+spec:
+  serviceName: service1
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service1
+  template:
+    metadata:
+      labels:
+        app: service1
+    spec:
+      containers:
+      - name: service1
+        image: viktor891/homework2:service1
+        ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: service2
+spec:
+  serviceName: service2
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service2
+  template:
+    metadata:
+      labels:
+        app: service2
+    spec:
+      containers:
+      - name: service2
+        image: viktor891/homework2:service2
+        ports:
+        - containerPort: 8081
